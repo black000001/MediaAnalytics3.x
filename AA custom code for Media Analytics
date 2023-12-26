@@ -35,6 +35,8 @@
         metadata["author"] = "author";
         tracker.trackSessionStart(mediaInfo, metadata);
 
+//Updating the playhead value
+
         playheadListener = setInterval(function () {            
             tracker.updatePlayhead(player.getCurrentTime());            
         }, 500);
@@ -57,7 +59,10 @@
         isTracking = false;
     }
 
-    function onPlayerStateChange(event) {
+//The provided JavaScript function onPlayerStateChange is an event handler for the YouTube IFrame API's onStateChange event
+//This function gets called whenever the state of the YouTube video player changes (e.g., when the video starts, ends, plays, pauses, etc.).
+    
+function onPlayerStateChange(event) {
         console.log(event);
         if (event.data == YT.PlayerState.UNSTARTED) {
             endSession(false);
@@ -75,6 +80,8 @@
         }
     }
 
+//initialize a YouTube video player on a webpage using JavaScript
+
     window.onYouTubeIframeAPIReady = function () {
         player = new YT.Player('player', {
             height: '360',
@@ -85,6 +92,8 @@
             }
         });                
     }
+
+//Embedding the YouTube IFrame API into the webpage dynamically using JavaScript
 
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
